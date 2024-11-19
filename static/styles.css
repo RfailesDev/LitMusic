@@ -1,0 +1,781 @@
+:root {
+    --hover-white: rgba(0, 0, 0, 0.04);
+    --small-button-size: 30px;
+    --percent-size: 80%;
+}
+
+body {
+    display: flex;
+    margin: 0;
+    font-family: "Roboto", serif;
+    background-color: #ffffff;
+    color: #333;
+    justify-content: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-bottom: 10px;
+    user-select: none;
+    padding-left: 30px;
+    align-items: center;
+    width: var(--percent-size);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+#add-track-button {
+    /* padding: 8px 20px; */
+    /* font-size: 14px; */
+    margin: 0;
+    cursor: pointer;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+    /* margin-top: 107px; */
+    width: 90%;
+    /* border-top: 1px solid black; */
+    gap: 10px;
+}
+
+.track-tile {
+    /* border: 1px solid #ddd; */
+    border-radius: 8px;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    /* display: flex; */
+    background-color: #00000008;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    justify-content: space-between;
+}
+
+.track-tile h3 {
+    margin: 0;
+    text-align: left;
+}
+
+.track-tile button {
+    /* margin: 5px; */
+    /* padding: 5px 10px; */
+}
+
+#audio-player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    transition: max-height 0.3s ease;
+    overflow: hidden;
+}
+
+#audio-player.minimized {
+    max-height: 50px;
+}
+
+#audio-player.maximized {
+    max-height: 200px;
+}
+
+#player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+#now-playing {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#toggle-player-button {
+    font-size: 16px;
+    transform: rotate(0deg);
+    transition: transform 0.3s ease;
+    color: #000000ab;
+}
+
+#toggle-player-button.rotated {
+    transform: rotate(180deg);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-button {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="url"],
+form textarea {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    /* border: 1px solid #e0e0e0; */
+    background: #00000008;
+    border: none;
+    /* margin-bottom: 15px; */
+}
+
+form textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+#tags-container {
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #00000017;
+    padding-left: 5px;
+    gap: 5px;
+}
+
+.tag-item {
+    display: flex;
+    align-items: center;
+    /* margin-bottom: 5px; */
+    gap: 5px;
+}
+
+.tag-item input {
+    flex: 1;
+}
+
+.tag-item button {
+    margin-left: 5px;
+    background: #00000012;
+    width: 30px;
+    padding: 5px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    border: none;
+}
+
+.tag-item button:hover {
+    background-color: #00000017;
+}
+
+.track-tile button {
+    /* margin: 5px; */
+    /* padding: 5px 10px; */
+    cursor: pointer;
+    background: #00000012;
+    width: 30px;
+    padding: 5px;
+    margin: 0;
+    /* border: 1px solid #00000036; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    /* border: none; */
+}
+
+.track-tile button:last-child {
+    /* background-color: #e74c3c; */ /* Красный цвет для удаления */
+    /* color: white; */
+    /* border: none; */
+    /* border-radius: 4px; */
+}
+
+button {
+    padding: 6px 12px;
+    margin: 5px;
+    border: none;
+    border-radius: 15px;
+    background-color: #000000bf;
+    color: white;
+    font-family: "Roboto", serif;
+    font-weight: 600;
+    transition: scale 0.05s;
+    user-select: none;
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button img {
+    width: 100%;
+}
+
+#search-form button {
+
+}
+
+.small-button {
+    /* color: black; */
+    background: none;
+    padding: 5px;
+    margin: 0;
+    aspect-ratio: 1;
+    width: var(--small-button-size);
+    height: var(--small-button-size);
+    min-width: var(--small-button-size);
+    min-height: var(--small-button-size);
+}
+
+.small-button img {
+
+    opacity: 0.5;
+}
+
+.small-button:hover {
+    background: var(--hover-white);
+}
+
+#search-form button:hover {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+.buttons button {
+    padding: 0;
+    background: none;
+    width: 25px;
+    margin: 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.buttons button:hover {
+    background-color: var(--hover-white); /* Темнее при наведении */
+}
+
+.top-div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+    user-select: none;
+}
+
+audio {
+    width: 100%;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: transparent; /* Убираем фон панели управления */
+}
+
+audio {
+    /* Убираем стандартный фон и обводку */
+    background: transparent;
+    border: none;
+    outline: none; /* Убираем фокус-обводку */
+
+    /* Настраиваем внешний вид дорожки */
+    accent-color: #4285f4; /* Цвет дорожки и ползунка */
+
+    /* Увеличиваем высоту дорожки и ползунка */
+    height: 50px;
+
+    /* Высота всей дорожки */
+
+    /* Стилизация ползунка */
+    /* Увеличиваем высоту и ширину ползунка */
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none; /* Убираем стандартный стиль */
+        appearance: none;
+        width: 16px; /* Ширина ползунка */
+        height: 16px; /* Высота ползунка */
+        border-radius: 50%; /* Делаем ползунок круглым */
+        background: #4285f4; /* Цвет ползунка */
+        cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #4285f4;
+        cursor: pointer;
+        border: none; /* Убираем обводку в Firefox */
+    }
+
+    &::-ms-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #4285f4;
+        cursor: pointer;
+        border: none; /* Убираем обводку в IE */
+    }
+
+
+    /* Стилизация дорожки прогресса (уже проигранная часть) */
+
+    &::-webkit-slider-runnable-track {
+        -webkit-appearance: none; /* Убираем стандартный стиль */
+        width: 100%;
+        height: 5px; /* Высота дорожки */
+        border-radius: 5px; /* Скругленные углы дорожки */
+        background: #e0e0e0; /* Цвет фона дорожки */
+        cursor: pointer;
+    }
+
+    &::-moz-range-track {
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background: #e0e0e0;
+        cursor: pointer;
+    }
+
+    &::-ms-track {
+        width: 100%;
+        height: 5px;
+        border-radius: 5px;
+        background: #e0e0e0;
+        color: transparent; /* Прячем стандартную дорожку в IE*/
+        cursor: pointer;
+    }
+
+    &::-ms-fill-lower {
+        background: #4285f4;
+        border-radius: 5px;
+    }
+
+}
+
+audio::-webkit-media-controls-enclosure {
+    background: none;
+}
+
+audio::-webkit-media-controls-current-time-display {
+    display: none;
+}
+
+audio::-webkit-media-controls-time-remaining-display {
+    display: none;
+}
+
+audio::-internal-media-controls-button-hover-background {
+    display: none;
+}
+
+#search-form {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    gap: 5px;
+    /* width: 70%; */
+    width: 100%;
+}
+
+#add-tag-button {
+    display: flex;
+    background: none;
+    padding: 5px;
+    margin: 0;
+    color: black;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+#add-tag-button:hover {
+    background: var(--hover-white);
+}
+
+#track-url {
+    background: #eeeeee;
+    border: none;
+}
+
+.submit-btn {
+    margin: 0;
+    margin-top: 10px;
+    width: 100%;
+    /* background-color: #28a745; */
+    border: none;
+    color: white;
+}
+
+.submit-btn:hover {
+    /* background-color: #218838; */
+}
+
+/* Стили для блока загрузки файла */
+#file-drop-area {
+    border: 2px dashed #cccccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+#file-drop-area.hover {
+    background-color: #f1f1f1;
+    border-color: #333333;
+}
+
+#file-drop-area p {
+    margin: 0;
+    font-size: 14px;
+    color: #666666;
+}
+
+#track-file {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+/* Стили для отображения выбранного файла */
+#selected-file-info {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5px 10px;
+    /* border: 1px solid #cccccc; */
+    border-radius: 5px;
+    background-color: #36419217;
+    border-bottom: 2px solid #000000;
+}
+
+#selected-file-info img {
+
+    width: 50px;
+}
+
+#selected-file-info.hidden {
+    display: none;
+}
+
+#selected-file-name {
+    font-size: 14px;
+    color: #333333;
+    font-weight: 600;
+}
+
+#remove-selected-file {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #000000;
+    cursor: pointer;
+}
+
+/* Стили для глобального overlay */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay.hidden {
+    display: none;
+}
+
+.overlay-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Анимация появления overlay */
+.overlay.fade-in {
+    animation: fadeIn 0.3s forwards;
+}
+
+.overlay.fade-out {
+    animation: fadeOut 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Дополнительные улучшения дизайна */
+
+.modal-content {
+    background-color: #fff;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    position: relative;
+}
+
+#add-track-form label {
+    font-weight: bold;
+}
+
+#add-track-form input[type="text"],
+#add-track-form input[type="url"],
+#add-track-form textarea,
+#add-track-form input[type="file"] {
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    /* margin-bottom: 15px; */
+}
+
+#add-track-form textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+#add-track-form button.submit-btn {
+    /* background-color: #28a745; */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#add-track-form button.submit-btn:hover {
+    /* background-color: #218838; */
+}
+
+/* Контейнер для уведомлений */
+#notifications-container {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000; /* Обеспечивает, что уведомления будут поверх всего */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none; /* Позволяет клики проходить через контейнер */
+}
+
+/* Само уведомление */
+.notification {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto; /* Включает клики на уведомлениях, если необходимо */
+}
+
+/* Анимация появления */
+.notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация исчезновения */
+.notification.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.intro-container {
+    position: fixed;
+    display: flex;
+    background: white;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999999;
+    align-items: center;
+    justify-content: center;
+}
+
+.intro-container .litmusic-text {
+    font-family: "Roboto", serif;
+    font-weight: 600;
+    font-size: 50px;
+}
+
+.intro-container {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: all;
+}
+
+.litmusic-text {
+    transition: transform 5s linear; /* 1s - длительность анимации, ease - функция плавности */
+    user-select: none;
+}
+
+.top-panel {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    /* width: 100%; */
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    align-items: center;
+    padding: 0 20px 0 20px;
+    z-index: 99999;
+}
+
+#tracks-container {
+    margin-top: 107px;
+}
+
+.play-pause-button {
+    width: 30px;
+    min-width: 30px;
+}
+
+#search-container {
+    display: flex;
+    align-items: center;
+    width: var(--percent-size);
+    justify-content: center;
+}
+
+@media (max-width: 600px) {
+    .track-tile button {
+        width: 40px;
+    }
+    .track-tile {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    main, header, #search-container {
+        width: 100%;
+    }
+
+    main {
+        padding: 10px 0;
+    }
+
+    .track-tile {
+        border-radius: 0;
+    }
+
+    #add-track-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    /* Уменьшаем размеры элементов в плеере */
+    #player-header {
+        /* flex-direction: column; */
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    #now-playing {
+        font-size: 14px;
+    }
+
+    #toggle-player-button {
+        font-size: 14px;
+    }
+}

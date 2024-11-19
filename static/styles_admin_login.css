@@ -1,0 +1,55 @@
+/* Styles for the login form */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    /* box-shadow: 0 5px 15px rgba(0,0,0,0.3); */
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.modal-content input {
+    /* width: 100%; */
+    padding: 6px 12px;
+    /* margin-bottom: 15px; */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    border-radius: 25px;
+}
+
+.modal-content button {
+    /* padding: 10px 20px; */
+    /* background-color: #4CAF50; */
+    border: none;
+    color: white;
+    /* border-radius: 4px; */
+    cursor: pointer;
+    margin: 0;
+}
+
+.title {
+    font-family: "Roboto", serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.error-message {
+    color: red;
+    margin-bottom: 15px;
+}
+
+
+@media (max-width: 600px) {
+
+}

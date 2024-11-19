@@ -1,0 +1,120 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>LitMusic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Стили -->
+    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Slab:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="intro-container">
+    <div class="litmusic-text">LitMusic</div>
+</div>
+
+<div id="notifications-container"></div>
+<!-- Верхняя панель -->
+<div class="top-panel">
+    <header>
+        <h1>LitMusic</h1>
+        <button id="add-track-button">Добавить Трек</button>
+        <button id="admin-button">Войти как админ</button>
+        <button id="logout-admin-button" style="display: none;">Выйти</button>
+    </header>
+
+    <!-- Поисковая панель -->
+    <div id="search-container">
+        <form id="search-form">
+            <input type="text" id="search-name" placeholder="Поиск" name="name" autocomplete="off">
+            <button type="submit" class="small-button"><img src="../static/icons/finder.webp" alt="Поиск"></button>
+            <button type="button" class="small-button" id="clear-search"><img src="../static/icons/text.webp" alt="Очистить"></button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Список треков -->
+<main id="tracks-container"></main>
+
+<!-- Контейнер для пагинации -->
+<!--<div id="pagination-controls"></div> -->
+
+<!-- Проигрыватель -->
+<div id="audio-player" class="minimized">
+    <div id="player-header">
+        <span id="now-playing">Сейчас играет: <span id="track-title"></span></span>
+        <button class="small-button" id="toggle-player-button"><img src="../static/icons/arrow.webp"></button>
+    </div>
+    <audio id="audio-control" controls controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"></audio>
+</div>
+
+<!-- Диалоговое окно добавления трека -->
+<div id="add-track-dialog" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="close-add-dialog">&times;</span>
+        <h2>Добавить Новый Трек</h2>
+        <form id="add-track-form">
+            <label for="track-name">Название Трека:</label>
+            <input type="text" id="track-name" name="name" required>
+
+            <label for="track-description">Описание:</label>
+            <textarea id="track-description" name="description"></textarea>
+
+            <label for="track-url">Ссылка на трек (необязательно):</label>
+            <input type="url" id="track-url" name="url" placeholder="https://example.com/track">
+
+            <label>Теги:</label>
+            <div id="tags-container">
+                <!-- Контейнер тегов -->
+            </div>
+            <button type="button" class="small-button" id="add-tag-button">+</button>
+
+            <!-- Новый блок для загрузки файла -->
+            <label for="track-file">Файл Трека:</label>
+            <div id="file-drop-area">
+                <p>Перетащите сюда файл или нажмите для выбора</p>
+                <input type="file" id="track-file" name="file" accept="audio/*" required>
+            </div>
+
+            <!-- Добавленный блок для отображения выбранного файла -->
+            <div id="selected-file-info" class="hidden">
+                <img src="../static/icons/audio.webp">
+                <span id="selected-file-name"></span>
+                <button type="button" class="small-button" id="remove-selected-file">&times;</button>
+            </div>
+
+            <button class="submit-btn" type="submit">Добавить</button>
+        </form>
+    </div>
+</div>
+
+<!-- Диалоговое окно описания -->
+<div id="description-dialog" class="modal">
+    <div class="modal-content">
+        <span class="close-button" id="close-description-dialog">&times;</span>
+        <h2 id="description-title"></h2>
+        <p id="description-text"></p>
+    </div>
+</div>
+
+<!-- Overlay для глобального перетаскивания файлов -->
+<div id="global-overlay" class="overlay hidden">
+    <div class="overlay-content">
+        <p>Отпустите файл, чтобы добавить трек</p>
+    </div>
+</div>
+
+<!-- Скрипты -->
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"></script>
+<script src="../static/app.js"></script>
+
+</body>
+</html>
